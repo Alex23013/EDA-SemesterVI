@@ -1,12 +1,10 @@
+#include "Tnode.h"
 
 template<T>
 class KdTree{
-	T* root;
-	int WhatDimension;
+	Tnode<T> *root;
 	
-	Kdtree(){
-		this->WhatDimension = 0;
-	}
+	Kdtree();
 	
 	bool find();
 	bool insert();

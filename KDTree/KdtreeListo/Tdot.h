@@ -56,6 +56,10 @@ int compare (Dot b, int dim){ //-1 soy menor || +1 soy mayor || 0 soy igual
 	}
 }
 
+int getDimensions(){
+	return dotContent.size();
+}
+
 };
 
 #endif

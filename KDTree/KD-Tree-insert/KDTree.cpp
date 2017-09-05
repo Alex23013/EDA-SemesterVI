@@ -22,7 +22,7 @@ void cKDTree::print2(cNode* t, int level) {
         {
             cout << "  ";
         }
-        cout<<vocabulary[t->mGetCutCoordinateVal()]<<endl;
+        cout<<vocabulary[t->mGetCutCoordinateVal()]<<" "<<(t->mGetCoordinate()).mcity<<"-"<<(t->mGetCoordinate()).mcountry<<endl;
         for (int k = 0; k < mDimensions*level; k++)
         {
             cout << "  ";
@@ -62,14 +62,13 @@ void cKDTree::mInsert(cCoordinate coord){
     }
 }
 
-void cKDTree:: build(vector<cCoordinate> x){
+void cKDTree:: build(vector<cCoordinate> x){ //construye el arbol
 	int actualDim = 0;
 	int cont =0;
 	int tamX = x.size();
 	while(!x.empty()){
-		//for(int i = 0; i< x.size();i++){       cout<<"(";	x[i].print();       cout<<") ";    }
-	    //sortPoints(&x,actualDim% mDimensions);
-	  	Insertion_Sort(&x,actualDim% mDimensions);
+		//sortPoints(&x,actualDim% mDimensions); //solo con un dataSet , numeros>0
+	  	BubbleSort(&x,actualDim% mDimensions);
 		//cout<<"\nsort ";	for(int i = 0; i< x.size();i++){       cout<<"(";	x[i].print();       cout<<") ";    }
 		int median = x.size()/2;
 		//cout<<"\nmediam ";

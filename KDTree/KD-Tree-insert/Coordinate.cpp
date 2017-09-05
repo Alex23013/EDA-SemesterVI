@@ -2,6 +2,13 @@
 
 cCoordinate::cCoordinate(vector<double> coord){
     mCoordinates = coord;
+    mcity = " ";
+};
+
+cCoordinate::cCoordinate(vector<double> coord, string city, string country){
+    mCoordinates = coord;
+    mcity = city;
+    mcountry = country;
 };
 
 

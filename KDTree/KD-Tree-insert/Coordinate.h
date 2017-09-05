@@ -9,10 +9,12 @@
  class cCoordinate {
  	public:
  		vector<double> mCoordinates;
- 
+ 		string mcity;
+ 		string mcountry;
  	public:
  		cCoordinate(vector<double>);
-         unsigned long mGetDimension();
+ 		cCoordinate(vector<double>, string city, string country);
+        unsigned long mGetDimension();
  		void print();
  		cCoordinate operator=(cCoordinate coord);
  		bool operator==(cCoordinate coord);

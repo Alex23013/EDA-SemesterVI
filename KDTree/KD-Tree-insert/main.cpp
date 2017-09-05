@@ -3,7 +3,7 @@
 #include "csvLector.h"
 using namespace std;
 
-string vocabulario ="xyz";
+string vocabulario ="xyz"; //aqi se modificaria si qisieramos etiquetar mas de una dimension
 
 /*Funcion para insertar elementos por teclado*/
 void addCoordinates(vector<double>* coord, int dim)

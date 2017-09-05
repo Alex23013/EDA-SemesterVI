@@ -1,6 +1,6 @@
 #include "Coordinate.h"
 
-cCoordinate::cCoordinate(vector<float> coord){
+cCoordinate::cCoordinate(vector<double> coord){
     mCoordinates = coord;
 };
 

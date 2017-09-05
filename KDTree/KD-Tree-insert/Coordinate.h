@@ -7,11 +7,11 @@
  using namespace std;
  
  class cCoordinate {
- 	private:
- 		vector<float> mCoordinates;
+ 	public:
+ 		vector<double> mCoordinates;
  
  	public:
- 		cCoordinate(vector<float>);
+ 		cCoordinate(vector<double>);
          unsigned long mGetDimension();
  		void print();
  		cCoordinate operator=(cCoordinate coord);

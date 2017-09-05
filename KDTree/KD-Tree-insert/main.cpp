@@ -1,27 +1,28 @@
 #include <iostream>
 #include "KDTree.h"
+#include "csvLector.h"
 using namespace std;
 
 string vocabulario ="xyz";
 
 /*Funcion para insertar elementos por teclado*/
-void addCoordinates(vector<float>* coord, int dim)
+void addCoordinates(vector<double>* coord, int dim)
 {
     for (int i=0;i<dim;i++)
     {
         cout<<vocabulario[i]<<" = ";
-        float coordinateI;
+        double coordinateI;
         cin>>coordinateI;
         coord->push_back(coordinateI);
     }
 }
 
 /*Funcion para insertar elementos Random*/
-void addCoordinatesRan(vector<float>* coord, int dim)
+void addCoordinatesRan(vector<double>* coord, int dim)
 {
     for (int i=0;i<dim;i++)
     {
-        float coordinateI=rand() % 100;
+        double coordinateI=rand() % 100;
         coord->push_back(coordinateI);
     }
 }
@@ -31,10 +32,8 @@ void menu()
 
     cout<<"1) Insertar Datos Random"<<endl;
     cout<<"2) Insertar Datos por Consola"<<endl;
-    cout<<"3) Borrar"<<endl;
-    cout<<"4) Encontrar vecino mas cercano"<<endl;
-    cout<<"5) Encontrar el minimo"<<endl;
-    cout<<"6) Salir"<<endl;
+    cout<<"3) Insertar Datos por csv "<<endl;
+	cout<<"6) Salir"<<endl;
     cout<<"Opcion -> ";
 }
 
@@ -48,7 +47,7 @@ int main() {
     cKDTree tree(dimensions);
     int option;
     int quantity;
-    vector<float> cord;
+    vector<double> cord;
     menu();
     cin>>option;
     while (option<6){
@@ -86,37 +85,23 @@ int main() {
                 break;
             }
             case 3: {
-                addCoordinates(&cord, dimensions);
-                cCoordinate cordenadita(cord);
-                cordenadita.print();
-                tree.mDelete(cordenadita, tree.mRoot, 0);
-                cord.clear();
-
-                cout << "-----------------------------Arbol-------------------------" << endl;
+            	string archivo;
+            	string ext =".csv";
+                cout<<"Ingrese el nombre del archivo .csv: ";
+                cin>>archivo;
+                archivo+=ext;
+                cout<<"archivo por abrir: "<<archivo<<endl;
+                vector <cCoordinate> asd = csvLector(archivo);
+               /* cout<<"A vector of : 2Dpoints\n";
+			    for(int i =0 ; i< asd.size();i++){
+					asd[i].print();
+				}*/
+				tree.build(asd);
+				cout << "-----------------------------Arbol-------------------------" << endl;
                 tree.print();
                 cout << endl;
                 break;
             }
-            case 4: {
-                addCoordinates(&cord, dimensions);
-                cCoordinate cordenadita2(cord);
-                cordenadita2.print();
-                cNode *FNN;
-                FNN = tree.MFindNearestNeighbor(cordenadita2);
-                cord.clear();
-                cout << "FNN: ";
-                FNN->mPrintCoordinates();
-                break;
-            }
-            case 5: {
-                cout << "Ingresa la coordenada: ";
-                int coor_search;
-                cin >> coor_search;
-                cNode *min = tree.mFindMin(tree.mRoot, coor_search, 0);
-                cout << "El minino es: ";
-                min->mPrintCoordinates();
-                break;
-			}
 			default:
 				break;
         }

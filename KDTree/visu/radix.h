@@ -81,3 +81,45 @@ void BubbleSort(vector<T>* a, int actualDim){
     }
 }
 
+/*
+int Pivot_Sort(vector<cCoordinate>* _array, cCoordinate _start, cCoordinate _end, int actualDim){
+    _array->at(_end)
+    cCoordinate x() ;
+    int i = (_start - 1);
+    for (int j = _start; j <= _end - 1; j++){
+
+        if (_array->at(j).mCoordinates[actualDim] <= x){                            ///Solo considera menores pues al hacer swap los mayores
+            i++;
+            swap(*(_array->begin()+i), *(_array->begin()+j));
+        }
+    }
+
+    swap(*(_array->begin()+i+1), *(_array->begin()+_end));
+    return (i + 1);                                         ///Siguiente a ordenar
+}
+
+void QuickSort(vector<int>* _array, int actuaDim){
+    vector<int> pila;
+    pila.push_back(0);
+    pila.push_back(_array->size()-1);
+
+    while ( !pila.empty() ) {
+
+        int fin = pila.back();
+        pila.pop_back();                        ///Elimina de la pila
+        int ini = pila.back();                  ///Copia a la pila
+        pila.pop_back();
+
+        int tmp = Pivot_Sort(_array, ini, fin, actualDim);     ///Ordena el vector[ini;fin] respecto al pivote
+
+        if(tmp-1 > ini){
+            pila.push_back(ini);                    ///Agrega lado izquierdo
+            pila.push_back(tmp-1);
+        }
+        if(tmp+1 < fin){
+            pila.push_back(tmp+1);                    ///Agrega lado derecho
+            pila.push_back(fin);
+        }
+    }
+}*/
+

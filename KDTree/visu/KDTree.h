@@ -16,6 +16,7 @@
  		void mInsert(cCoordinate);
  		bool mInsertAux(cCoordinate,cNode**,int);
         double findClosest(QPointF punto, bool eje,bool dir,QPainter * painter);
+        int  myfind(vector<cCoordinate> y,cCoordinate x);
  		virtual ~cKDTree ();
         void print(QPainter * painter, int depth );
         void print2(cNode* t, int nivel,QPainter * painter,cNode* father,int depth );

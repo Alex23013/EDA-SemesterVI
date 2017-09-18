@@ -56,9 +56,9 @@ double cKDTree:: findClosest(QPointF punto , bool eje, bool dir,QPainter * paint
         if( p2x<punto.x() && p2y > punto.y() && p2y-punto.y() < dist ){
                 res = p2y;
                 dist = p2y-punto.y();
-                QPointF a (punto.x(),p2y);//ok--amarilo-hacia:abajo
-                cout<<"ifi"<<dist;
-                painter->drawPoint(a);
+                //QPointF a (punto.x(),p2y);//ok--amarilo-hacia:abajo
+                //cout<<"ifi"<<dist;
+               // painter->drawPoint(a);
             }
          }
        }
@@ -77,10 +77,10 @@ double cKDTree:: findClosest(QPointF punto , bool eje, bool dir,QPainter * paint
                   }
                }
         }else{//dir ==1
-          res = leftBorder*2;
+          res = leftBorder*2; //azul
           for(int i =0;i < dotsInX.size();i++){
               dotsInX[i].getCoords(&p1x,&p1y,&p2x,&p2y);
-              if( p2x<punto.x() && p2y > punto.y() && p2x-punto.x() < dist ){
+              if( p2x>punto.x() && p1y > punto.y() && p2x-punto.x() < dist ){
                       res = p2x;
                       dist = p2x-punto.x();
                       //QPointF a (punto.y(),p2x);//falta
@@ -99,7 +99,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
     }
     if (t!=NULL)
     {
-        print2(t->mGetChild(1), level+1,painter,t,depth);
+        //print2(t->mGetChild(1), level+1,painter,t,depth);
         for (int k = 0; k < mDimensions*level; k++)
         {
             cout << "  ";
@@ -126,43 +126,10 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
             painter->drawLine(line2);
             painter->drawLine(line3);
 
+
         }else{
 
-            if(vocabulary[t->mGetCutCoordinateVal()]=='x')
-            {
-                linepen.setWidth(2);
-                QPointF ayLow;
-                QPointF ayHigh;
-                ayLow.setX(a.x());
-                ayHigh.setX(a.x());
-                if(t == father->mGetChild(0))
-                {//soy hijo arriba
-                    ayLow.setY(((father->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
-                    //ayHigh.setY(((t->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
-                    ayHigh.setY(findClosest(a,0,0,painter));
-                    linepen.setWidth(2);
-                    linepen.setColor(Qt::green);
-                    painter->setPen(linepen);
-                }
-                else
-                {//soy hijo abajo
-                    //ayLow.setY(((t->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
-                    ayLow.setY(findClosest(a,0,1,painter));
-                    linepen.setWidth(2);
-                    linepen.setColor(Qt::yellow);
-                    painter->setPen(linepen);
-                    ayHigh.setY(((father->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
-                }
-
-                painter->setPen(linepen);
-                QLineF line2(a,ayLow);
-                QLineF line3(a,ayHigh);
-                painter->drawLine(line2);
-                painter->drawLine(line3);
-                QRectF store(ayLow,ayHigh);
-                dotsInX.push_back(store);
-            }
-            else
+            if(vocabulary[t->mGetCutCoordinateVal()]=='y')
             {
                 linepen.setWidth(2);
                 QPointF axLow;
@@ -176,6 +143,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                     axHigh.setX(findClosest(a,1,0,painter));
                     linepen.setWidth(2);
                     linepen.setColor(Qt::red);
+                    cout<<"ROJO";
                     painter->setPen(linepen);
                 }
                 else
@@ -186,6 +154,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                     axLow.setX(findClosest(a,1,1,painter));
                     linepen.setWidth(2);
                     linepen.setColor(Qt::blue);
+                    cout<<"AZUL";
                     painter->setPen(linepen);
                 }
                 QLineF line(a,axLow);
@@ -195,10 +164,48 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                 QRectF store(axLow,axHigh);
                 dotsInY.push_back(store);
                // cout<<"["<<axLow.x()<<","<<axLow.y()<<"+"<<axHigh.x()<<","<<axHigh.y()<<"]";
+            }
+            else
+            {
+                linepen.setWidth(2);
+                QPointF ayLow;
+                QPointF ayHigh;
+                ayLow.setX(a.x());
+                ayHigh.setX(a.x());
+                if(t == father->mGetChild(0))
+                {//soy hijo arriba
+                    ayLow.setY(((father->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
+                    //ayHigh.setY(((t->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
+                    ayHigh.setY(findClosest(a,0,0,painter));
+                    linepen.setWidth(2);
+                    linepen.setColor(Qt::green);
+                    cout<<"VERDE";
+                    painter->setPen(linepen);
+                }
+                else
+                {//soy hijo abajo
+                    //ayLow.setY(((t->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
+                    ayLow.setY(findClosest(a,0,1,painter));
+                    linepen.setWidth(2);
+                    linepen.setColor(Qt::yellow);
+                    cout<<"AMAILLO";
+                    painter->setPen(linepen);
+                    ayHigh.setY(((father->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
+                }
+
+                painter->setPen(linepen);
+                QLineF line2(a,ayLow);
+                QLineF line3(a,ayHigh);
+                painter->drawLine(line2);
+                painter->drawLine(line3);
+                QRectF store(ayLow,ayHigh);
+                dotsInX.push_back(store);
+
+
            }
         }
 
-        linepen.setWidth(5);
+        linepen.setWidth(2);
         linepen.setColor(Qt::black);
         painter->setPen(linepen);
         painter->drawPoint(a);
@@ -207,6 +214,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
 
         //X,Ypoint//painter->drawPoint((t->mGetCoordinate(0)*scaleFactor)+leftBorder,((t->mGetCoordinate(1)*-1)*scaleFactor)+topBorder);
         ///////////////////////////////
+        print2(t->mGetChild(1), level+1,painter,t,depth);
         t->mPrintCoordinates();
         print2(t->mGetChild(0), level+1,painter,t,depth);
     }
@@ -242,17 +250,41 @@ void cKDTree::mInsert(cCoordinate coord){
     }
 }
 
+int cKDTree:: myfind(vector<cCoordinate> y,cCoordinate x){
+    for(int i = 0;i<y.size();i++){
+        if(y[i]== x){return i;}
+    }
+
+}
+
 void cKDTree:: build(vector<cCoordinate> x){ //construye el arbol
 	int actualDim = 0;
-	int cont =0;
-	int tamX = x.size();
-	while(!x.empty()){
+    int cont =0;
+    vector<cCoordinate> y(x);
+    BubbleSort(&x,0);
+    BubbleSort(&y,1);
+    cout<<"Mdimension"<<mDimensions;
+    while(!x.empty()){
 		//sortPoints(&x,actualDim% mDimensions); //solo con un dataSet , numeros>0
-	  	BubbleSort(&x,actualDim% mDimensions);
-		//cout<<"\nsort ";	for(int i = 0; i< x.size();i++){       cout<<"(";	x[i].print();       cout<<") ";    }
-        int median = x.size()/2;
-		mInsert(x[median]);
-        x.erase(x.begin()+median);
+        //cout<<"\nsort ";	for(int i = 0; i< x.size();i++){       cout<<"(";	x[i].print();       cout<<") ";    }
+        int median;
+
+        if(actualDim % mDimensions == 0){
+            median = x.size()/2;
+            mInsert(x[median]);
+          // if( x[median] ==  y[myfind(y,x[median])]){cout <<"SON IGUALEs\n";};
+            x.erase(x.begin()+median);
+            y.erase(y.begin()+myfind(y,x[median]));
+        }else{
+            median = y.size()/2;
+            mInsert(y[median]);
+           // if( y[median] ==  x[myfind(x,y[median])]){cout <<"SON Y IGUALEs\n";};
+            y.erase(y.begin()+median);
+            x.erase(x.begin()+myfind(x,y[median]));
+        }
+        cont+=1;
+        if(cont%10==0) cout<<cont<<endl;
 		actualDim++;
-		}
+
+    }
 }

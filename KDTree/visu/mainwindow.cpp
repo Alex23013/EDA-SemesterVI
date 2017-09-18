@@ -20,7 +20,8 @@ void MainWindow::paintEvent(QPaintEvent *e)
 {
     QPainter p(this);
     //string archivo ="crime10r.csv";
-    string archivo ="1m.csv";
+    //string archivo ="1mm.csv";
+    string archivo ="c10k.csv";
     cout<<"archivo por abrir: "<<archivo<<endl;
     int dimensions = 2;
     cKDTree tree(dimensions);
@@ -31,6 +32,6 @@ void MainWindow::paintEvent(QPaintEvent *e)
     }*/
     tree.build(asd);
     cout << "-----------------------------Arbol-------------------------" << endl;
-    tree.print(&p,5);
+    tree.print(&p,20);
     cout << endl;
 }

@@ -32,6 +32,6 @@ void MainWindow::paintEvent(QPaintEvent *e)
     }*/
     tree.build(asd);
     cout << "-----------------------------Arbol-------------------------" << endl;
-    tree.print(&p,20);
+    tree.print(&p,10);
     cout << endl;
 }

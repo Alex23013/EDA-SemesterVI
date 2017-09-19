@@ -33,7 +33,7 @@ void menu()
     cout<<"1) Insertar Datos Random"<<endl;
     cout<<"2) Insertar Datos por Consola"<<endl;
     cout<<"3) Insertar Datos por csv "<<endl;
-	cout<<"6) Salir"<<endl;
+    cout<<"6) Salir"<<endl;
     cout<<"Opcion -> ";
 }
 

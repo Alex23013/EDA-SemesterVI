@@ -1,0 +1,65 @@
+CountryName,CapitalName,CapitalLatitude,CapitalLongitude,CountryCode,ContinentName
+Palestine,Jerusalem,31.7666666667,35.233333,PS,Asia
+Afghanistan,Kabul,34.5166666667,69.183333,AF,Asia
+Albania,Tirana,41.3166666667,19.816667,AL,Europe
+Algeria,Algiers,36.75,3.05,DZ,Africa
+Argentina,Buenos Aires,-34.5833333333,-58.666667,AR,South America
+Australia,Canberra,-35.2666666667,149.133333,AU,Australia
+Austria,Vienna,48.2,16.366667,AT,Europe
+Barbados,Bridgetown,13.1,-59.616667,BB,North America
+Bolivia,La Paz,-16.5,-68.15,BO,South America
+Brazil,Brasilia,-15.7833333333,-47.916667,BR,South America
+Bulgaria,Sofia,42.6833333333,23.316667,BG,Europe
+Canada,Ottawa,45.4166666667,-75.7,CA,Central America
+Chile,Santiago,-33.45,-70.666667,CL,South America
+China,Beijing,39.9166666667,116.383333,CN,Asia
+Colombia,Bogota,4.6,-74.083333,CO,South America
+Republic of Congo,Brazzaville,-4.25,15.283333,CG,Africa
+Costa Rica,San Jose,9.9333333333,-84.083333,CR,Central America
+Cuba,Havana,23.1166666667,-82.35,CU,North America
+Ecuador,Quito,-0.2166666667,-78.5,EC,South America
+Egypt,Cairo,30.05,31.25,EG,Africa
+El Salvador,San Salvador,13.7,-89.2,SV,Central America
+Fiji,Suva,-18.1333333333,178.416667,FJ,Australia
+Finland,Helsinki,60.1666666667,24.933333,FI,Europe
+France,Paris,48.8666666667,2.333333,FR,Europe
+Germany,Berlin,52.5166666667,13.4,DE,Europe
+Haiti,Port-au-Prince,18.5333333333,-72.333333,HT,North America
+Vatican City,Vatican City,41.9,12.45,VA,Europe
+Honduras,Tegucigalpa,14.1,-87.216667,HN,Central America
+Hungary,Budapest,47.5,19.083333,HU,Europe
+Iceland,Reykjavik,64.15,-21.95,IS,Europe
+India,New Delhi,28.6,77.2,IN,Asia
+Indonesia,Jakarta,-6.1666666667,106.816667,ID,Asia
+Iran,Tehran,35.7,51.416667,IR,Asia
+Iraq,Baghdad,33.3333333333,44.4,IQ,Asia
+Ireland,Dublin,53.3166666667,-6.233333,IE,Europe
+Israel,Jerusalem,31.7666666667,35.233333,IL,Asia
+Italy,Rome,41.9,12.483333,IT,Europe
+Jamaica,Kingston,18,-76.8,JM,North America
+Japan,Tokyo,35.6833333333,139.75,JP,Asia
+Luxembourg,Luxembourg,49.6,6.116667,LU,Europe
+Macedonia,Skopje,42,21.433333,MK,Europe
+Madagascar,Antananarivo,-18.9166666667,47.516667,MG,Africa
+Mexico,Mexico City,19.4333333333,-99.133333,MX,Central America
+Nepal,Kathmandu,27.7166666667,85.316667,NP,Asia
+Netherlands,Amsterdam,52.35,4.916667,NL,Europe
+Panama,Panama City,8.9666666667,-79.533333,PA,Central America
+Papua New Guinea,Port Moresby,-9.45,147.183333,PG,Australia
+Paraguay,Asuncion,-25.2666666667,-57.666667,PY,South America
+Peru,Lima,-12.05,-77.05,PE,South America
+Philippines,Manila,14.6,120.966667,PH,Asia
+Pitcairn Islands,Adamstown,-25.0666666667,-130.083333,PN,Australia
+Poland,Warsaw,52.25,21,PL,Europe
+Portugal,Lisbon,38.7166666667,-9.133333,PT,Europe
+Puerto Rico,San Juan,18.4666666667,-66.116667,PR,North America
+Russia,Moscow,55.75,37.6,RU,Europe
+Singapore,Singapore,1.2833333333,103.85,SG,Asia
+United Kingdom,London,51.5,-0.083333,GB,Europe
+United States,Washington D.C.,38.883333,-77,US,Central America
+Uruguay,Montevideo,-34.85,-56.166667,UY,South America
+Venezuela,Caracas,10.4833333333,-66.866667,VE,South America
+Vietnam,Hanoi,21.0333333333,105.85,VN,Asia
+Antarctica,N/A,0,0,AQ,Antarctica
+Northern Cyprus,North Nicosia,35.183333,33.366667,NULL,Europe
+Hong Kong,N/A,0,0,HK,Asia

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "coordinate.h"
+#include "Coordinate.h"
 
 vector<cCoordinate> csvLector(string g)
 {

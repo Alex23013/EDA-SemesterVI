@@ -143,7 +143,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                     axHigh.setX(findClosest(a,1,0,painter));
                     linepen.setWidth(2);
                     linepen.setColor(Qt::red);
-                    cout<<"ROJO";
+                    //cout<<"ROJO";
                     painter->setPen(linepen);
                 }
                 else
@@ -154,7 +154,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                     axLow.setX(findClosest(a,1,1,painter));
                     linepen.setWidth(2);
                     linepen.setColor(Qt::blue);
-                    cout<<"AZUL";
+                    //cout<<"AZUL";
                     painter->setPen(linepen);
                 }
                 QLineF line(a,axLow);
@@ -179,7 +179,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                     ayHigh.setY(findClosest(a,0,0,painter));
                     linepen.setWidth(2);
                     linepen.setColor(Qt::green);
-                    cout<<"VERDE";
+                    //cout<<"VERDE";
                     painter->setPen(linepen);
                 }
                 else
@@ -188,7 +188,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                     ayLow.setY(findClosest(a,0,1,painter));
                     linepen.setWidth(2);
                     linepen.setColor(Qt::yellow);
-                    cout<<"AMAILLO";
+                    //cout<<"AMAILLO";
                     painter->setPen(linepen);
                     ayHigh.setY(((father->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
                 }
@@ -215,7 +215,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
         //X,Ypoint//painter->drawPoint((t->mGetCoordinate(0)*scaleFactor)+leftBorder,((t->mGetCoordinate(1)*-1)*scaleFactor)+topBorder);
         ///////////////////////////////
         print2(t->mGetChild(1), level+1,painter,t,depth);
-        t->mPrintCoordinates();
+        //t->mPrintCoordinates();
         print2(t->mGetChild(0), level+1,painter,t,depth);
     }
 }
@@ -257,34 +257,41 @@ int cKDTree:: myfind(vector<cCoordinate> y,cCoordinate x){
 
 }
 
+struct FunctorX
+{
+    inline bool operator() (const cCoordinate& coord1, const cCoordinate& coord2)
+    {
+        return (coord1.mCoordinates[0] < coord2.mCoordinates[0]);
+    }
+};
+
+struct FunctorY
+{
+    inline bool operator() (const cCoordinate& coord1, const cCoordinate& coord2)
+    {
+        return (coord1.mCoordinates[1] < coord2.mCoordinates[1]);
+    }
+};
+
 void cKDTree:: build(vector<cCoordinate> x){ //construye el arbol
 	int actualDim = 0;
     int cont =0;
     vector<cCoordinate> y(x);
-    BubbleSort(&x,0);
-    BubbleSort(&y,1);
     cout<<"Mdimension"<<mDimensions;
     while(!x.empty()){
 		//sortPoints(&x,actualDim% mDimensions); //solo con un dataSet , numeros>0
         //cout<<"\nsort ";	for(int i = 0; i< x.size();i++){       cout<<"(";	x[i].print();       cout<<") ";    }
-        int median;
-
-        if(actualDim % mDimensions == 0){
-            median = x.size()/2;
-            mInsert(x[median]);
-          // if( x[median] ==  y[myfind(y,x[median])]){cout <<"SON IGUALEs\n";};
-            x.erase(x.begin()+median);
-            y.erase(y.begin()+myfind(y,x[median]));
+        if(actualDim% mDimensions == 0){
+            sort(x.begin(), x.end(), FunctorX());
         }else{
-            median = y.size()/2;
-            mInsert(y[median]);
-           // if( y[median] ==  x[myfind(x,y[median])]){cout <<"SON Y IGUALEs\n";};
-            y.erase(y.begin()+median);
-            x.erase(x.begin()+myfind(x,y[median]));
+            sort(x.begin(), x.end(), FunctorY());
         }
+        int median = x.size()/2;
+        mInsert(x[median]);
+        //mSplitPoints.push_back(&x[median]);
+        x.erase(x.begin()+median);
         cont+=1;
         if(cont%10==0) cout<<cont<<endl;
-		actualDim++;
-
+        actualDim++;
     }
 }

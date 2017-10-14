@@ -20,18 +20,14 @@ void MainWindow::paintEvent(QPaintEvent *e)
 {
     QPainter p(this);
     //string archivo ="crime10r.csv";
-    //string archivo ="1mm.csv";
-    string archivo ="c10k.csv";
+    string archivo ="1m.csv";
+    //string archivo ="c10k.csv";
     cout<<"archivo por abrir: "<<archivo<<endl;
     int dimensions = 2;
     cKDTree tree(dimensions);
     vector <cCoordinate> asd = csvLector(archivo);
-    /*cout<<"A vector of : 2Dpoints\n";
-    for(int i =0 ; i< asd.size();i++){
-        asd[i].print();
-    }*/
     tree.build(asd);
     cout << "-----------------------------Arbol-------------------------" << endl;
-    tree.print(&p,10);
+    tree.print(&p,20);
     cout << endl;
 }

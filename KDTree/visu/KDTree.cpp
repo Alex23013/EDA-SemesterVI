@@ -1,4 +1,5 @@
 #include "KDTree.h"
+#include <algorithm>
 int leftBorder = 620;
 int topBorder = 350;
 float scaleFactor = 3.5;
@@ -131,7 +132,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
 
             if(vocabulary[t->mGetCutCoordinateVal()]=='y')
             {
-                linepen.setWidth(2);
+                linepen.setWidth(1);
                 QPointF axLow;
                 QPointF axHigh;
                 axLow.setY(a.y());
@@ -167,7 +168,6 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
             }
             else
             {
-                linepen.setWidth(2);
                 QPointF ayLow;
                 QPointF ayHigh;
                 ayLow.setX(a.x());
@@ -177,7 +177,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                     ayLow.setY(((father->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
                     //ayHigh.setY(((t->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
                     ayHigh.setY(findClosest(a,0,0,painter));
-                    linepen.setWidth(2);
+                    linepen.setWidth(1);
                     linepen.setColor(Qt::green);
                     //cout<<"VERDE";
                     painter->setPen(linepen);
@@ -186,7 +186,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
                 {//soy hijo abajo
                     //ayLow.setY(((t->mGetCoordinate(1)+ycenter)*yScale)+topBorder);
                     ayLow.setY(findClosest(a,0,1,painter));
-                    linepen.setWidth(2);
+                    linepen.setWidth(1);
                     linepen.setColor(Qt::yellow);
                     //cout<<"AMAILLO";
                     painter->setPen(linepen);
@@ -205,7 +205,7 @@ void cKDTree::print2(cNode* t, int level,QPainter * painter,cNode* father,int de
            }
         }
 
-        linepen.setWidth(2);
+        linepen.setWidth(3);
         linepen.setColor(Qt::black);
         painter->setPen(linepen);
         painter->drawPoint(a);
@@ -259,6 +259,9 @@ int cKDTree:: myfind(vector<cCoordinate> y,cCoordinate x){
 
 struct FunctorX
 {
+    /*FunctorY(){
+
+    }*/
     inline bool operator() (const cCoordinate& coord1, const cCoordinate& coord2)
     {
         return (coord1.mCoordinates[0] < coord2.mCoordinates[0]);
@@ -278,18 +281,28 @@ void cKDTree:: build(vector<cCoordinate> x){ //construye el arbol
     int cont =0;
     vector<cCoordinate> y(x);
     cout<<"Mdimension"<<mDimensions;
+
+    std::vector<cCoordinate>::iterator it;
     while(!x.empty()){
 		//sortPoints(&x,actualDim% mDimensions); //solo con un dataSet , numeros>0
         //cout<<"\nsort ";	for(int i = 0; i< x.size();i++){       cout<<"(";	x[i].print();       cout<<") ";    }
         if(actualDim% mDimensions == 0){
             sort(x.begin(), x.end(), FunctorX());
+            int median = x.size()/2;
+            mInsert(x[median]);
+            it = find (y.begin(), y.end(), x[median]);
+            x.erase(x.begin()+median);
+            y.erase(it);
         }else{
-            sort(x.begin(), x.end(), FunctorY());
+            sort(y.begin(), y.end(), FunctorY());
+            int median = y.size()/2;
+            mInsert(y[median]);
+            it = find (x.begin(), x.end(), y[median]);
+            y.erase(y.begin()+median);
+            x.erase(it);
         }
-        int median = x.size()/2;
-        mInsert(x[median]);
         //mSplitPoints.push_back(&x[median]);
-        x.erase(x.begin()+median);
+
         cont+=1;
         if(cont%10==0) cout<<cont<<endl;
         actualDim++;

@@ -4,12 +4,12 @@
 #include "cnodegraphic.h"
 
 cnodeGraphic::cnodeGraphic(cNode* data, qreal radius, QGraphicsItem* parent)
-    : QGraphicsEllipseItem((data->level*100) - radius, (data->level*100) - radius,
+    : QGraphicsEllipseItem(/*(data->level*100) - radius*/450, data->level*100,
                            radius * 2, radius * 2,  parent)
 {
     this->data = data;
     this->setPen(QPen(Qt::black, 1));
-    this->setBrush(Qt::green); // TODO: find a good color;
+    this->setBrush(QColor(0, 0, 255, 127));
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     //this->setToolTip(QString::number(data->value.x()) % ", " % QString::number(data->value.y()));
 }

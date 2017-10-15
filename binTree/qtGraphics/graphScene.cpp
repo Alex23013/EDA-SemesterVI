@@ -22,18 +22,30 @@ void GraphScene::showTree() {
     int len;
     while(c.size()!=0){
         len=c.size();
+        int radius = 25;
         for(int i=0;i<len;i++){
-        if(c[i]){
-            cnodeGraphic * nodo = new cnodeGraphic(c[i],10);
-            c[i]->graphics = nodo;
-            this->addItem(nodo);
-            c.push_back(c[i]->childs[0]);
-            c.push_back(c[i]->childs[1]);
+            if(c[i]){
+                cnodeGraphic * nodo = new cnodeGraphic(c[i],radius);
+                if (c[i] == binTree->root) nodo->setColor(QColor(255, 0, 0, 127));
+                c[i]->graphics = nodo;
+                int levelActual = nodo->getData()->level;
+                nodo->setPos((levelActual)+ (100*i),levelActual);
+                this->addItem(nodo);
+                QString s = QString::number(c[i]->info);
+                QGraphicsTextItem *text = this->addText(s);
+                text->setPos((levelActual)+ (100*i)+450+(radius/2),levelActual*100+(radius/2));
+
+                c.push_back(c[i]->childs[0]);
+                c.push_back(c[i]->childs[1]);
+            }
+            else
+            {
+                //todo:visualizar null nodes
+                /*QBrush greenBrush(Qt::green);
+                QPen outlinePen(Qt::black);
+                this->addEllipse(450-(100*i),(100*i), radius, radius, outlinePen, greenBrush);*/
+            }
         }
-        //else
-        //  cout << "- ";
-        }
-        //cout<<endl;
         c.erase(c.begin(),c.begin()+len);
     }
 

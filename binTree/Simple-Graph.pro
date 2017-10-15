@@ -18,13 +18,15 @@ SOURCES += \
     qtGraphics/mainWindow.cpp \
     cnode.cpp \
     cbinarytree.cpp \
-    cnodegraphic.cpp
+    cnodegraphic.cpp \
+    cfatnodes.cpp
 
 HEADERS += \
     qtGraphics/graphScene.h \
     qtGraphics/mainWindow.h \
     cnode.h \
     cbinarytree.h \
-    cnodegraphic.h
+    cnodegraphic.h \
+    cfatnodes.h
 
 # FORMS += 

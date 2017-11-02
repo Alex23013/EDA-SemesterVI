@@ -1,8 +1,8 @@
 #ifndef CBINARYTREE_H
 #define CBINARYTREE_H
 
-#include"cnode.h"
-
+#include "cnode.h"
+#include "cfatnodes.h"
 class cbinarytree
 {
 public:

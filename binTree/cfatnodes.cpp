@@ -1,27 +1,31 @@
 #include "cfatnodes.h"
 #include "cnode.h"
-cfatNodes::cfatNodes(cNode* nodo)
+cfatNode::cfatNode(cNode* nodo)
 {
     versiones.push_back(nodo);
     this->versionActual = versiones[0];
 }
 
-int cfatNodes::numVersiones(){
+int cfatNode::numVersiones(){
     return versiones.size();
 }
 
-void cfatNodes::addNode(cNode *nodo){
+void cfatNode::addNodeVersion(cNode *nodo){
     versiones.push_back(nodo);
 }
 
-void cfatNodes::setVersion(int n){
+void cfatNode::setVersion(int n){
     this->versionActual = versiones[n];
 }
 
-int cfatNodes::getinfo(){
+int cfatNode::getinfo(){
     return versionActual->info;
 }
 
-QVector<cNode*> cfatNodes:: getVersions(){
+cNode* cfatNode:: getChilds(bool side){
+    return this->versionActual->childs[side];
+}
+
+QVector<cNode*> cfatNode:: getVersions(){
     return this->versiones;
 }

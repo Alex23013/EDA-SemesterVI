@@ -17,7 +17,7 @@ void GraphScene::showTree() {
     binTree->root->graphics = nodo;
     this->addItem(nodo);
     */
-   QVector <cNode*> c;
+  /* QVector <cNode*> c;
     c.push_back(binTree->root);
     int len;
     while(c.size()!=0){
@@ -41,17 +41,14 @@ void GraphScene::showTree() {
             else
             {
                 //todo:visualizar null nodes
-                /*QBrush greenBrush(Qt::green);
-                QPen outlinePen(Qt::black);
-                this->addEllipse(450-(100*i),(100*i), radius, radius, outlinePen, greenBrush);*/
             }
         }
         c.erase(c.begin(),c.begin()+len);
     }
-
+*/
 }
 
 void GraphScene:: createTree(){
     binTree->test();
-    this->showTree();
+    //this->showTree();
 }

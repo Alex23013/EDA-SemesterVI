@@ -18,10 +18,15 @@ void cNode::eject(bool side)//borrar un side=0 o 1 / left o right
 
 void cNode:: inject(cNode* n, bool side) // ingresa un nodo n  en este side
 {
-    this->childs[side] = n;
+    this->childs[side] = new cfatNode(n);
+
 }
 
 void cNode:: change(int e)
 {
     this->info = e;
+}
+
+cNode* cNode:: getCurrentChild(bool side){
+    return this->childs[side]->versionActual;
 }

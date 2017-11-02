@@ -6,14 +6,15 @@
 class cbinarytree
 {
 public:
-  cNode *root;
+  cfatNode *root;
+  int tiempoActual;
 
 
     cbinarytree();
     void test();
     void contenido();
 
-    bool findNode(int x,cNode**&p,int &level);
+    bool findNode(int x,cfatNode**&p,cNode* &padre,int &level, bool &dir);
     bool insertNode(int x);
     bool removeNode(int x);
     cNode**  swapNode(cNode** q );

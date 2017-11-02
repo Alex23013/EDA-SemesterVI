@@ -3,6 +3,7 @@
 #include"cnode.h"
 #include<QVector>
 
+class cNode;
 class cfatNode
 {
     QVector <cNode*> versiones;
@@ -12,10 +13,10 @@ public:
 
     cfatNode(cNode* nodo);
     int numVersiones();
-    void addNodeVersion(cNode* nodo);
+    void addNodeVersion(cNode* nodo,cNode* n1, bool side);
     void setVersion(int n);
     int getinfo();
-    cNode* getChilds(bool side);
+    cfatNode* getChilds(bool side);
     QVector<cNode*> getVersions();
 };
 

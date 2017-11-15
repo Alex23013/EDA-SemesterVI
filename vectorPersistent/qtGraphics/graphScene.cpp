@@ -13,6 +13,8 @@ GraphScene::GraphScene(QObject* parent) : QGraphicsScene(parent) {
 void GraphScene::showTree() {
     QGraphicsTextItem *text = this->addText("Arbol en el tiempo :");
     text->setPos(50,30);
+    QGraphicsTextItem *textX = this->addText("X :");
+    textX->setPos(10,390);
     QString s = QString::number(mainVector->versionActual->tiempoActual);
     QGraphicsTextItem *text1 = this->addText(s);
     text1->setPos(50,50);
@@ -73,4 +75,7 @@ void GraphScene::deleteElement(int x, bool side){
     this->showTree();
 }
 
-
+void GraphScene::changeElement(int x, int newX){
+    mainVector->changeValue(x,newX);
+    this->showTree();
+}

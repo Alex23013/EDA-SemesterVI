@@ -26,8 +26,10 @@ void cfatNode:: deleteValue(int x, bool side){
 
 
 void cfatNode :: changeValue(int x, int newX){
- addVersion();
- versionActual->changeNode(x, newX);
+    if (cambio == 0){
+        addVersion();
+        versionActual->changeNode(x, newX);
+    }
 }
 
 void cfatNode::addVersion(){

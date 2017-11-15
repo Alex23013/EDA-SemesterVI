@@ -18,6 +18,7 @@ public:
     void redoTree();
     void insertElement(int x);
     void deleteElement(int x, bool side);
+    void changeElement(int x, int newX);
 
 /*protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;

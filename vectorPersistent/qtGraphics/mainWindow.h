@@ -22,6 +22,7 @@ private:
     QPushButton* redoButton;
     QPushButton* insertButton;
     QPushButton* deleteButton;
+    QPushButton* changeButton;
     QLineEdit* newElement;
     QLineEdit* childToRemove;
 
@@ -30,6 +31,7 @@ private slots:
  void handleRedoButton();
  void handleInsertButton();
  void handleDeleteButton();
+ void handleChangeButton();
 
 public:
    MainWindow();

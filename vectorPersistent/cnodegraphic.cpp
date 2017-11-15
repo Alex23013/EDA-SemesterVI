@@ -4,7 +4,7 @@
 #include "cnodegraphic.h"
 
 cnodeGraphic::cnodeGraphic(cNode* data, qreal radius, QGraphicsItem* parent)
-    : QGraphicsEllipseItem(/*(data->level*100) - radius*/450, data->level*100,
+    : QGraphicsEllipseItem(550-(data->level*100), data->level*100,
                            radius * 2, radius * 2,  parent)
 {
     this->data = data;

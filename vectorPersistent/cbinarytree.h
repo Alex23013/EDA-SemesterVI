@@ -14,6 +14,7 @@ public:
     void setTime(int newTime);
 
     void findNode(int x,cNode*&p,int& level);
+    //bool findNode(int x,cNode**&p,int& level);
 
     bool insertNode(int x);
     bool removeNode(int x, bool side);

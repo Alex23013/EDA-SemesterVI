@@ -36,6 +36,27 @@ void cbinarytree:: setTime(int newTime){
     tiempoActual = newTime;
 }
 
+/*
+bool cbinarytree::findNode(int x,cNode**&p,int & level){
+       p=&root;
+       while(*p && (*p)->info != x){
+           p=&((*p)->childs[(*p)->info < x]);
+           level++;
+           }
+       return *p;
+       }
+
+bool cbinarytree:: insertNode(int x){
+       //cout<<"nodo_in:"<<x<<endl;
+       cNode** p;
+       int level =0;
+       if(findNode(x,p,level)){
+           return 0;}
+       *p=new cNode(x,level,tiempoActual);
+       return 1;
+}
+*/
+
 void cbinarytree::findNode(int x,cNode*&p,int & level){
     p=root;
     while(p && (p)->info != x){
@@ -53,14 +74,14 @@ void cbinarytree::findNode(int x,cNode*&p,int & level){
 }
 
 bool cbinarytree::insertNode(int x){
-    cout<<"nodo_in:"<<x<<endl;
+    //cout<<"nodo_in:"<<x<<endl;
     int level =0;
     if(root){
         //cout<<"es otro hijo \n";
         cNode* p;
         findNode(x,p,level);
-        cout<<"p->"<<p->info;
-        cout<<"l: "<<level;
+        //cout<<"p->"<<p->info;
+        //cout<<"l: "<<level;
         cNode* newChild = new cNode(x,level,tiempoActual);
         bool dir = p->info < x;
         p->inject(newChild,dir);
@@ -72,7 +93,7 @@ bool cbinarytree::insertNode(int x){
     return 1;
 }
 
-/**/
+
 bool cbinarytree::removeNode(int x, bool side){
     cout<<"del nodo "<<x<<" delete child["<<side<<"]\n";
     int level =0;
@@ -84,7 +105,7 @@ bool cbinarytree::removeNode(int x, bool side){
     return 1;
 }
 
-/**/
+
 bool cbinarytree:: changeNode(int x,int newValue){
      cout<<"replace nodo "<<x<<" por "<<newValue<<"\n";
      int level =0;

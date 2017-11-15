@@ -3,19 +3,21 @@
 
 #include <QGraphicsScene>
 
-//class cbinarytree;
 class cfatNode;
 
 class GraphScene : public QGraphicsScene {
     Q_OBJECT
 
 private:
-  //  cbinarytree*  binTree;
     cfatNode* mainVector;
 public:
     explicit GraphScene(QObject* parent = 0);
     void createTree();
     void showTree();
+    void undoTree();
+    void redoTree();
+    void insertElement(int x);
+    void deleteElement(int x, bool side);
 
 /*protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
